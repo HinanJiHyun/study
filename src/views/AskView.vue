@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div v-for="item in fetchedAsk">
-      {{item.title}}
+    <div v-for="item in fetchedAsk" class="list">
+      <a :href="item.url">{{item.title}}</a>
+      <small>{{item.time_ago}} | {{item.user}}</small>
       <hr>
     </div>
   </div>
@@ -35,6 +36,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+list{
+  display: flex;
+  justify-content: space-between;
+}
+small{
+  display: block;
+  color: #a1a1a1;
+}
 </style>
