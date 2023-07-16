@@ -12,22 +12,27 @@ export const router = new VueRouter({
         {
             path: '/news',
             component: () => import("../views/NewsView.vue"),
+            meta: { transition: 'slide-left' },
         },
         {
             path: '/jobs',
             component: () => import("../views/JobsView.vue"),
+            meta: { transition: 'slide-left' },
         },
         {
             path: '/ask',
             component: () => import("../views/AskView.vue"),
+            meta: { transition: 'slide-left' },
         },
         {
-            path: '/item',
+            path: '/item/:id',
             component: () => import("../views/ItemView.vue"),
+            meta: { transition: 'slide-left' },
         },
         {
-            path: '/user',
+            path: '/user/:name',
             component: () => import("../views/UserView.vue"),
+            meta: { transition: 'slide-left' },
         },
     ]
 })

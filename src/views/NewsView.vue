@@ -2,7 +2,10 @@
   <div>
     <div v-for="item in fetchedNews" class="list">
       <a :href="item.url">{{item.title}}</a>
-      <small>{{item.time_ago}} | {{item.user}}</small>
+      <small>
+        {{item.time_ago}} By
+        <router-link :to="`/user/${item.user}`">{{item.user}}</router-link>
+      </small>
       <hr>
     </div>
   </div>
