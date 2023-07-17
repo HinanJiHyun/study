@@ -1,11 +1,11 @@
 import Vuex from "vuex";
 import Vue from "vue";
 import {
-    fetchAskItem,
+    fetchNewsList,
     fetchAskList,
     fetchJobsList,
-    fetchNewsList,
     fetchUserInfo,
+    fetchItem,
 } from "@/api";
 
 Vue.use(Vuex)
@@ -31,7 +31,7 @@ export const store = new Vuex.Store({
         fetchedUser(state){
             return state.user
         },
-        fetchedAskItem(state){
+        fetchedItem(state){
             return state.item
         },
     },
@@ -82,7 +82,7 @@ export const store = new Vuex.Store({
                 .catch((e) => console.log(e))
         },
         FETCH_ITEM({commit}, itemId){
-            fetchAskItem(itemId)
+            fetchItem(itemId)
                 .then(({data}) => {
                     commit('SER_ITEM',data)
                 })

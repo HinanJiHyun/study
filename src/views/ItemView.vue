@@ -1,42 +1,41 @@
 <template>
   <div>
-    <h1>{{ fetchedAskItem.title }}</h1>
-    <div class="user-container" >
-      <div>
-      <i style="vertical-align: middle; margin-right: 3px" class="fa-sharp fa-solid fa-user-pen"></i>
-      <router-link :to="`/user/${fetchedAskItem.user}`">
-        {{fetchedAskItem.user}}
-      </router-link>
+    <section>
+      <user-profile :info="fetchedItem">
+<!--        <div slot="userName">{{fetchedItem.user}}</div>-->
+<!--        <router-link slot="userName" :to="`/user/${fetchedItem.user}`">-->
+<!--          {{fetchedItem.user}}-->
+<!--        </router-link>-->
+        <div slot="userName">
+          <router-link :to="`/user/${fetchedItem.user}`">
+            {{ `Posted ${fetchedItem.user }`}}
+          </router-link>
+        </div>
+        <template>
+          <div slot="time">{{fetchedItem.time_ago}}</div>
+        </template>
+      </user-profile>
+    </section>
+    <section>
+      <h2>{{fetchedItem.title}}</h2>
+    </section>
+    <section>
+      <div v-html="fetchedItem.content">
+<!--        {{fetchedItem.content}}-->
       </div>
-      <div>
-        {{fetchedAskItem.time_ago}}
-      </div>
-    </div>
-    <div class="content">
-      <h2 v-html="fetchedAskItem.content"></h2>
-    </div>
-    <hr>
-    <h3>comment</h3>
-    <div v-for="item in fetchedAskItem.comments" class="comment">
-      <div class="comment-container">
-      <div><i class="fa-sharp fa-solid fa-circle-user" style="margin-right: 3px;"></i></div>
-      <router-link :to="`/user/${item.user}`">
-        <h4 style="display: inline">{{item.user}}</h4>
-      </router-link>
-      </div>
-      <p v-html="fetchedAskItem.content"/>
-      <hr>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import UserProfile from "@/components/UserProfile.vue";
 
 export default {
+  components: {UserProfile},
   computed:{
     ...mapGetters([
-        "fetchedAskItem"
+        "fetchedItem"
     ]),
     // item(){
     //   return this.$store.state.item
@@ -50,30 +49,18 @@ export default {
 </script>
 
 <style scoped>
-h1{
-  padding: 10px;
-  margin-bottom: 0;
-  background-color: #bdd7ba;
-}
-.content{
-  padding: 0 20px;
-}
-h3{
-  background-color: #dfefdd;
-  padding: 10px;
-}
-.comment{
-  padding: 0 20px;
-}
 .user-container{
   display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
+  align-items: center;
+  padding: 0.5rem;
 }
-.comment-container{
-  display: flex;
+.fa-user{
+  font-size: 2.5rem;
 }
-.comment-container h4{
-  margin: 0;
+.user-description{
+  padding-left: 8px;
+}
+.time {
+  font-size: 0.7rem;
 }
 </style>

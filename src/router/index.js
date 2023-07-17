@@ -11,16 +11,19 @@ export const router = new VueRouter({
         },
         {
             path: '/news',
+            name: 'news',
             component: () => import("../views/NewsView.vue"),
             meta: { transition: 'slide-left' },
         },
         {
             path: '/jobs',
+            name: 'jobs',
             component: () => import("../views/JobsView.vue"),
             meta: { transition: 'slide-left' },
         },
         {
             path: '/ask',
+            name: 'ask',
             component: () => import("../views/AskView.vue"),
             meta: { transition: 'slide-left' },
         },

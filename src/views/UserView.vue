@@ -1,30 +1,37 @@
 <template>
   <div>
-    <p>UserName: {{fetchedUser.id}}</p>
-    <p>Karma: {{fetchedUser.karma}}</p>
-    <p>Created: {{fetchedUser.created}}</p>
+    <UserProfile :info="userInfo">
+      <div slot="userName">{{userInfo.id}}</div>
+      <span slot="time">{{`Signin: ${userInfo.created}`}}, </span>
+      <span slot="karma">{{userInfo.karma}}</span>
+    </UserProfile>
   </div>
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
+import UserProfile from "@/components/UserProfile.vue";
 
 export default {
+  components: {UserProfile},
   computed:{
     ...mapGetters([
       "fetchedUser"
-    ])
+    ]),
+    userInfo(){
+      return this.$store.state.user
+    }
   },
   created() {
     const userName = this.$route.params.name
     this.$store.dispatch('FETCH_USER', userName)
-    // this.fetchUserInfo()
+    // this.()
   },
   // methods: {
   //   ...mapActions([
   //     "FETCH_USER"
   //   ]),
-  //   async fetchUserInfo(){
+  //   async (){
   //     const userName = this.$route.params.id
   //     const data = await this.FETCH_USER(userName);
   //     return data

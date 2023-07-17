@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <tool-bar></tool-bar>
-      <router-view/>
-
   </div>
 </template>
 
@@ -18,8 +16,19 @@ export default {
 <style>
 body{
   margin: 0;
+  padding: 0;
 }
 a{
+  color: #34495e;
   text-decoration-line: none;
 }
+a:hover{
+  /*color: #42b883;*/
+  text-decoration-line: underline;
+}
+a.router-link-exact-active{
+  text-decoration-line: underline;
+}
+
+
 </style>
