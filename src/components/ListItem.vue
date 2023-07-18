@@ -39,33 +39,34 @@
 import {mapGetters} from "vuex";
 
 export default {
-  created() {
-    // console.log(this.$route.path === '/news')
-    const name = this.$route.name
-    const actionName = (name) => {
-      this.$store.dispatch(name)
-    }
-    if(name === 'news'){
-      actionName('FETCH_NEWS')
-    } else if (name === 'ask'){
-      actionName('FETCH_ASK')
-    } else if (name === 'jobs') {
-      actionName('FETCH_JOBS')
-    }
-  },
+  // created() {
+  //   // console.log(this.$route.path === '/news')
+  //   const name = this.$route.name
+  //   const actionName = (name) => {
+  //     this.$store.dispatch(name)
+  //   }
+  //   if(name === 'news'){
+  //     actionName('FETCH_NEWS')
+  //   } else if (name === 'ask'){
+  //     actionName('FETCH_ASK')
+  //   } else if (name === 'jobs') {
+  //     actionName('FETCH_JOBS')
+  //   }
+  // },
   computed: {
     ...mapGetters([
       'fetchedNews',"fetchedAsk", "fetchedJobs"
     ]),
     listItems(){
-      const name = this.$route.name
-      if(name === 'news'){
-        return this.$store.state.news
-      } else if (name === 'ask'){
-        return this.$store.state.ask
-      } else if (name === 'jobs') {
-        return this.$store.state.jobs
-      }
+      // const name = this.$route.name
+      // if(name === 'news'){
+      //   return this.$store.state.news
+      // } else if (name === 'ask'){
+      //   return this.$store.state.ask
+      // } else if (name === 'jobs') {
+      //   return this.$store.state.jobs
+      // }
+      return this.$store.state.list
     }
   },
 }

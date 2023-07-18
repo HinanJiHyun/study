@@ -4,6 +4,7 @@ import {
     fetchNewsList,
     fetchAskList,
     fetchJobsList,
+    fetchList,
     fetchUserInfo,
     fetchItem,
 } from "@/api";
@@ -17,6 +18,7 @@ export const store = new Vuex.Store({
         jobs: [],
         user: {},
         item: {},
+        list: []
     },
     getters: {
         fetchedNews(state){
@@ -48,15 +50,19 @@ export const store = new Vuex.Store({
         SET_USER(state, data){
             state.user = data
         },
-        SER_ITEM(state, data){
+        SET_ITEM(state, data){
             state.item = data
+        },
+        SET_LIST(state, data){
+            state.list = data
         }
     },
     actions: {
         FETCH_NEWS({commit}){
             fetchNewsList()
-                .then(({data}) => {
-                    commit('SET_NEWS',data)
+                .then((res) => {
+                    commit('SET_NEWS',res.data)
+                    return res
                 })
                 .catch((e) => console.log(e))
         },
@@ -84,9 +90,16 @@ export const store = new Vuex.Store({
         FETCH_ITEM({commit}, itemId){
             fetchItem(itemId)
                 .then(({data}) => {
-                    commit('SER_ITEM',data)
+                    commit('SET_ITEM',data)
                 })
                 .catch(e=>console.error(e))
+        },
+        FETCH_LIST({commit}, pageName){
+            fetchList(pageName)
+                .then(({data}) => {
+                    commit('SET_LIST',data)
+                })
+                .catch(err => console.log(err))
         }
     }
 })
